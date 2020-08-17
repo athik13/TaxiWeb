@@ -20,12 +20,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('display-taxi-data/{center_name}', function($center_name) {
-    $url = "http://127.0.0.1:8000/api/display-taxis/" . $center_name;
+    $url = "https://taviyani.xyz/api/display-taxis/" . $center_name;
     $response = Http::get($url);
     return $response->json();
 });
 
 Route::get('display-marquee-text', function() {
-    $response = Http::get('http://127.0.0.1:8000/api/display-marquee-text');
+    $response = Http::get('https://taviyani.xyz/api/display-marquee-text');
     return $response;
 });

@@ -54,16 +54,16 @@
             this.title = today.toLocaleString('default', { month: 'long' }) + ' - ' + this.center;
 
             // Taxi Data
-            axios.get('http://taxiweb.test/api/display-taxi-data/'+ this.center)
+            axios.get('https://taviyani.bl4nk.dev/api/display-taxi-data/'+ this.center)
                  .then(response => (this.taxis = response.data));
 
             // Marquee Data
-            axios.get('http://taxiweb.test/api/display-marquee-text')
+            axios.get('https://taviyani.bl4nk.dev/api/display-marquee-text')
                  .then(response => (this.marqueeData = response.data));
             console.log('Marquee Data Updated.');
             
             this.interval = setInterval(() => {
-                axios.get('http://taxiweb.test/api/display-taxi-data/'+ this.center)
+                axios.get('https://taviyani.bl4nk.dev/api/display-taxi-data/'+ this.center)
                      .then(response => (this.taxis = response.data));
                 console.log('Data Updated.')
             }, 60000 );
