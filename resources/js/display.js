@@ -1,4 +1,5 @@
 import ExampleComponent from './components/ExampleComponent.vue';
+import VueSpinners from 'vue-spinners'
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -16,6 +17,7 @@ window.axios = require('axios');
 */
 
 Vue.component('example-component', ExampleComponent);
+Vue.use(VueSpinners)
 
 const app = new Vue({
     el: '#app'

@@ -22,7 +22,14 @@
             </div>
         </div>
 
-        <div class="row no-gutters">
+        <div class="row no-gutters" v-if="loading">
+            <div class="d-flex align-items-center justify-content-center loading">
+                <h1 class="loading-text">Loading</h1>
+                <square loading="loading" color="#FFFFFF" height="50" width="50"></square>
+            </div>
+        </div>
+
+        <div class="row no-gutters" v-else>
             <Taxi v-for="taxi in taxiFilter" :key="taxi.callCode" :taxi="taxi" />
         </div>
     </div>
@@ -40,7 +47,8 @@
                 title: '',
                 search: '',
                 marqueeData: '',
-                taxis: []
+                taxis: [],
+                loading: true
             }
         },
         props: ['center'],
@@ -55,7 +63,10 @@
 
             // Taxi Data
             axios.get('https://taviyani.bl4nk.dev/api/display-taxi-data/'+ this.center)
-                 .then(response => (this.taxis = response.data));
+                 .then(response => {
+                        this.taxis = response.data; 
+                        this.loading = false;
+                    });
 
             // Marquee Data
             axios.get('https://taviyani.bl4nk.dev/api/display-marquee-text')
@@ -92,3 +103,16 @@
         }
     }
 </script>
+
+<style scoped>
+    .loading {
+        width: 100%;
+        height: 90vh;
+        text-align: center;
+        color: white;
+    }
+    .loading-text {
+        font-size: 130px;
+        margin-right: 50px;
+    }
+</style>
